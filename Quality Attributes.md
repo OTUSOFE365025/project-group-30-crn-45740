@@ -1,1 +1,10 @@
-Add the Quality Attributes to this file
+| Quality Attribute | Description | Related Use Case and Requirements |
+|---|---|---|
+| Performance |  |  |
+| Usability |  |  |
+| Availability |  |  |
+| Modifiability |  |  |
+| Interoperability |  |  |
+| Security |  |  |
+| Maintainability |  |  |
+
