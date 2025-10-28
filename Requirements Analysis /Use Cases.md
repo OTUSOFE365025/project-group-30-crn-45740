@@ -12,3 +12,6 @@ Add the Use Cases to this file
 | UC7-Availability and Scalability | The system will be operating under a high load, with thousands of users in an institution. The system can scale and maintain a 99.5% monthly availability and provide automatic failover and backup recovery. | R7,R11,RA7,RA6 |
 | UC8-Data Synchronization with Systems | The system must synchronize data with connected university systems like the LMS or registration database. This is done at configurable intervals, and the system must maintain data integrity and consistency across all systems. | R3, RD1, RD4 |
 | UC9-Uploading New System Updates | System Maintainers should be able to release system updates, new features, and upgraded AI models with zero downtime for end-users. | RM1, RM2, RM7 |
+
+
+<img width="583" height="526" alt="image" src="https://github.com/user-attachments/assets/c95da21b-0a8e-4652-8b6c-35648dc286cb" />
