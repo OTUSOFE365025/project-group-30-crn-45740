@@ -1,5 +1,5 @@
 | Design Decision | Rationale |
-|---|---|
+| --- | --- |
 | Structure the system using Web Application reference architecutre | The web application reference architecture can be run in a browser and allows for UI and UI process logic, 
 which is pivotal for many requirements and use cases, such as RS9, UC1, UC2, and UC3 to name a few. 
 Complying with RM3 and RM5, the service agents component can be implemented as the AI model for easy modifiability and integration. 
