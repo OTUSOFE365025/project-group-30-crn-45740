@@ -27,3 +27,7 @@ Instantiate elements:
 | --- | --- |
 | Develop AI model as a service in data layer | By developing the AI model as a service, the component can stay modular and easily updated or modified when needed. |
 | Add a local database in data layer | To satisfy RS14, a local database should be implemented for periods of zero to low connectivity. |
+
+Model diagram:
+
+<img width="338" height="627" alt="image" src="https://github.com/OTUSOFE365025/project-group-30-crn-45740/blob/phase2/model.PNG" />
