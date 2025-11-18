@@ -21,3 +21,9 @@ Choice of reference architecture:
 | Design Decision | Rationale |
 | --- | --- |
 | Structure the system using Web Application reference architecture | The web application reference architecture can be run in a browser and allows for UI and UI process logic, which is pivotal for many requirements and use cases, such as RS9, UC1, UC2, and UC3 to name a few. Complying with RM3 and RM5, the service agents component can be implemented as the AI model for easy modifiability and integration. The Web Application architecture also supports an external database, which is needed for R6. However, one modification that must be made is to add a cache for offline or low connectivity (RS14). |
+
+Instantiate elements:
+| Design Decision | Rationale |
+| --- | --- |
+| Develop AI model as a service in data layer | By developing the AI model as a service, the component can stay modular and easily updated or modified when needed. |
+| Add a local database in data layer | To satisfy RS14, a local database should be implemented for periods of zero to low connectivity. |
