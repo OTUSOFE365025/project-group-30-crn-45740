@@ -7,10 +7,14 @@ Quality attribute scenarios | Of the seven quality attribute scenarios listed, t
 | Constraints | CON2 and CON3 were chosen because they shape what choice of architecture can be chosen. |
 | Concerns | CRN1, CRN5, and CRN7 were chosen as they represent important questions that can be answered by the choice of architecture. |
 
+Iteration goal: Design an architecture for the AIDAP system that can support UC7, UC8, and UC9 while allowing for business logic and UI to be added at a later date.
+
 Major components of the architecture:
 | Element | Rationale | Related Quality Attributes |
 | --- | --- | --- |
-| UI |  |
+| Database component | To satisfy UC8, a database component that can synchronize with other university systems must be designed. This should be done while complying with RD2 to satisfy interoperability. |
+| Cloud-native service component | To satisfy UC7, the system should contain a cloud-native service component so the system can be scaled if needed and maintain a 99.5% monthly availability. |
+| Modular AI model | To support continuous deployment, the AI model should be modular so it can be easily replaced or upgraded with zero downtime. |
 
 
 Choice of reference architecture:
