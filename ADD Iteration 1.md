@@ -31,3 +31,35 @@ Instantiate elements:
 Model diagram:
 
 <img width="338" height="627" alt="image" src="https://github.com/OTUSOFE365025/project-group-30-crn-45740/blob/phase2/model.PNG" />
+
+Analysis of design:
+| Not Addressed | Partially Addressed | Completely Addressed | Rationale |
+| --- | --- | --- | --- |
+|  | UC1 |  | The AI model implementation has been decided, but the UI has not been. |
+| UC2 |  |  | The UI implementation has not yet been decided. |
+| UC3 |  |  | The UI implementation has not yet been decided. |
+|  | UC4 |  | The architecture to facilitate this use case has been decided, but the UI has not been. |
+| UC5 |  |  | The system security has not yet been decided. |
+| UC6 |  |  | The UI implementation has not yet been decided. |
+|  |  | UC7 | The cloud-native service that can support 99.5% availability and a high load has been decided. |
+|  |  | UC8 | The databases to support data synchronization, offline modes, and providing knowledge for the AI model has been identified. |
+|  |  | UC9 | The cloud-native service to support continuous deployment and no downtime has been decided. |
+|  | QA1 |  | The AI and scalability implementations have been decided, but not UI. |
+| QA2 |  |  | The UI implementation has not yet been decided. |
+|  |  | QA3 | The cloud-native service that can support 99.5% availability and a high load has been decided. |
+|  |  | QA4 | The data layer and databases have been designed to be modular so changes can be made quickly without affecting other parts of the system.  |
+|  | QA5 |  | The decision to implement standard APIs for the databases has been made. |
+| QA6 |  |  | No decision regarding security has been made. |
+| QA7 |  |  | The cloud-native service that can support continuous deployment and zero downtime has been made. |
+|  | CON1 |  | The cloud-native service that can support scalability has been made, but decisions regarding performance has not. |
+|  |  | CON2 | The architecture to support mobile, web, and voice-assistant devices has been decided. |
+|  |  | CON3 | The decision to implement standard APIs for the databases has been made. |
+|  |  | CON4 | The addition of a local database in the data layer has been decided. |
+| CON5 |  |  | No decision regarding security has been made. |
+| CRN1 |  |  | No decision regarding security and user authentication has been made. |
+| CRN2 |  |  | No decision regarding security and user data has been made. |
+| CRN3 |  |  | No decision regarding UI has been made. |
+| CRN4 |  |  | No decision regarding UI has been made. |
+|  |  | CRN5 | Analytics will be exposed to system maintainers and administrators. |
+| CRN6 |  |  | No decision regarding UI has been made. |
+|  |  | CRN7 | The AI will be implemented as a service in service helper in the data layer. |
