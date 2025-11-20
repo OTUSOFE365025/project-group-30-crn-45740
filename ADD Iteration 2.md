@@ -4,10 +4,10 @@
 
 | Category | Description |
 | --- | --- |
-| Design purpose | Design the UI and application/service layer for AIDAP so users can securely interact with the system via web, mobile, and voice, and receive personalized notifications. |
+| Design purpose | Design the UI and application/service layer for AIDAP so users can securely interact with the system via web, mobile, and receive personalized notifications. |
 | Primary functional requirements | UC1 (asking academic questions) and UC6 (interpreting natural language) because they define the core conversational flow. UC2 (receiving notifications) because it drives the notification pipeline. UC5 (student authentication) because secure access is required before exposing user-specific data. |
 | Quality attribute scenarios | Performance: responses within 2 seconds under normal load (CON1). Usability: students can intuitively manage notification and language preferences (RS6). Security: SSO and role-based access prevent unauthorized access and detect login abuse. |
-| Constraints | CON1 (up to 5,000 concurrent users with ~2s response), CON2 (support web, mobile, and voice), and CON5 (adhere to institutional security and privacy regulations). |
+| Constraints | CON1 (up to 5,000 concurrent users with ~2s response), CON2 (support web, mobile), and CON5 (adhere to institutional security and privacy regulations). |
 | Concerns | CRN1 (identity and access), CRN2 (privacy and compliance), CRN3 (notifications), CRN4 (UI/UX), and CRN6 (content and announcement workflow). |
 
 ---
@@ -34,7 +34,7 @@ Design an architecture for the **presentation and application/service layers** t
 
 | Design Decision | Rationale |
 | --- | --- |
-| Extend the existing Web Application reference architecture with an API Gateway and a set of backend application services | Keeps the browser-based model from Iteration 1 while adding a clear separation between clients, API Gateway, and application services. This supports multi-channel access (web, mobile, voice), allows centralized security and performance control, and keeps conversation, auth, and notification logic modular and replaceable. |
+| Extend the existing Web Application reference architecture with an API Gateway and a set of backend application services | Keeps the browser-based model from Iteration 1 while adding a clear separation between clients, API Gateway, and application services. This supports multi-channel access (web, mobile), allows centralized security and performance control, and keeps conversation, auth, and notification logic modular and replaceable. |
 
 ---
 
@@ -60,5 +60,5 @@ Design an architecture for the **presentation and application/service layers** t
 | --- | --- | --- | --- |
 |  | UC3, UC4 | UC1, UC2, UC5, UC6 | UC1/UC2/UC5/UC6 have end-to-end paths defined through the UI, API Gateway, and services. UC3 (announcements) and UC4 (analytics) have places in the architecture (Conversation, Notification, Analytics services) but detailed workflows and UIs will be refined later. |
 |  | Performance QA, Usability QA, Security QA |  | Tactics for performance (gateway, concurrency), usability (separate UIs and preferences), and security (Auth & RBAC, SSO, gateway validation) are in place, but low-level tuning and policy details are left for later iterations. |
-|  | CON1, CON5 | CON2 | Multi-channel access (web, mobile, voice) is fully supported by the separated clients and shared API. Performance and security constraints are architecturally considered but need implementation and configuration to be fully satisfied. |
+|  | CON1, CON5 | CON2 | Multi-channel access (web, mobile) is fully supported by the separated clients and shared API. Performance and security constraints are architecturally considered but need implementation and configuration to be fully satisfied. |
 |  | CRN2, CRN4, CRN6 | CRN1, CRN3 | Identity and access (CRN1) and notifications (CRN3) have dedicated services and clear responsibilities. Privacy, UX consistency, and detailed announcement workflows are partly addressed but will be completed when UI screens, retention rules, and content flows are fully designed. |
