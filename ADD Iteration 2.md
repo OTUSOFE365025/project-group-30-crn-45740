@@ -14,7 +14,7 @@
 
 ### Iteration goal:
 
-Design an architecture for the **presentation and application/service layers** that supports UC1, UC2, UC5, and UC6 using the existing web application reference architecture, while preparing the system for announcements and analytics in later iterations.
+Design an architecture for the **presentation and application/service layers** that supports UC1, UC2, UC5, and UC6 using the existing web application reference architecture.
 
 ---
 
@@ -23,7 +23,6 @@ Design an architecture for the **presentation and application/service layers** t
 | Element | Rationale | Related Quality Attributes |
 | --- | --- | --- |
 | Web & Mobile UI Clients | Provide conversational UI and dashboards for students and lecturers, and allow users to manage preferences (language and notifications) on different devices. | Usability, Performance |
-| Voice Assistant Adapter | Adapts voice-assistant platforms to the same backend APIs so users can query AIDAP by voice without changing core logic. | Usability, Interoperability |
 | API Gateway / Conversation API | Single entry point for all clients; centralizes auth, rate limiting, logging, and routing to backend services to meet performance and security goals. | Performance, Security, Maintainability |
 | Conversation Service & AI Orchestrator | Handle conversational state and route queries to the AI model and data sources, enabling UC1 and UC6 without exposing data-layer details. | Performance, Modifiability |
 | Auth & RBAC Service | Integrates with institutional SSO and enforces roles (student/lecturer/admin/maintainer) at the service boundary to protect user data. | Security |
@@ -40,13 +39,12 @@ Design an architecture for the **presentation and application/service layers** t
 ---
 
 ### Instantiate elements:
-
 | Design Decision | Rationale |
 | --- | --- |
-| Split the client into Web UI, Mobile UI, and a Voice Adapter | Makes it easier to support CON2 by providing separate front-ends for each channel while keeping them on the same backend APIs. |
-| Introduce an API Gateway / Conversation API between clients and services | Centralizes authentication, rate limiting, and routing to backend services, helping to meet security and performance requirements. |
-| Add an Auth & RBAC Service integrated with SSO | Ensures UC5 is supported by handling login, token validation, and role mapping in a single place instead of scattering security across services. |
-| Add dedicated Conversation, Notification, and Preferences Services | Encapsulates conversational logic, event delivery, and user preferences so they can evolve independently while supporting UC1, UC2, and UC6. |
+| Split the client tier into Web UI and Mobile UI | Supports CON2 and allows each client to optimize its UI/UX without changing backend logic. |
+| Introduce a centralized API Gateway | Improves security through token validation, rate limiting, and uniform request handling; supports performance goals. |
+| Add Auth & RBAC Service | Ensures secure SSO-based authentication and enforces permissions for accessing academic data. |
+| Add Conversation, Notification, and Preferences Services | Makes core flows (UC1, UC2, UC6) modular and easier to evolve while keeping the architecture clean and maintainable. |
 
 ---
 
