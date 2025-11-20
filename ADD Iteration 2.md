@@ -50,7 +50,7 @@ Design an architecture for the **presentation and application/service layers** t
 
 ### Model diagram:
 
-![Iteration 2 Architecture Diagram](phase2/ADD_iteration_2_diagram.drawio.png)
+![Iteration 2 Architecture Diagram](phase2/ADD_Iteration_2_diagram.drawio.png)
 
 
 ---
