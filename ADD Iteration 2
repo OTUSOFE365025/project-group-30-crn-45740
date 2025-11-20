@@ -1,1 +1,12 @@
-Include in this file the 7 steps for Iteration 2
+ADD Iteration 2 — Security & Availability
+
+(AIDAP System — Attribute-Driven Design)
+
+Step 1: Review Inputs
+Category | Details
+
+---|---
+Design Purpose | This is the second refinement iteration of the AIDAP architecture. The goal is to strengthen the system's Security and Availability—two of the highest-priority quality attributes for institutional academic systems.
+Primary Functional Requirements | UC5 – Student Authentication, UC2 – Notifications, UC3 – Posting Announcements, UC4 – Viewing Class Analytics
+Quality Attributes | Security, Availability
+Relevant Constraints | CON-1, CON-3, CON-5
