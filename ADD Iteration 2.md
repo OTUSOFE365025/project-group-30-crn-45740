@@ -1,18 +1,66 @@
-**ADD Iteration 2 -- AIDAP System**
-----------------------------------
+## Iteration 2 – ADD
 
-### **Step 1: Review Inputs**
+### Review inputs:
 
-| **Category** | **Details** |
+| Category | Description |
 | --- | --- |
-| **Design Purpose** | This is the second iteration of a greenfield architecture for the AIDAP system. The purpose is to refine the architecture to better support secure access to academic data and high system availability under institutional workloads. |
-| **Primary Functional Requirements (from Use Cases)** | **UC5 -- Student Authentication:** Students (and staff) must log in through institutional SSO to access AIDAP via web/mobile/voice. The system must protect student-specific data.\
-**UC1 -- Asking an Academic Question:** Users query grades, deadlines, etc., using natural language; AI must access sensitive academic data securely.\
-**UC2 -- Receiving Notifications:** Personalized notifications must be delivered only to the correct, authenticated user.\
-**UC4 -- Viewing Class Analytics:** Only authorized instructors can view course analytics. |
-| **Quality Attributes (Drivers for this iteration)** | **Security:** Must detect and block brute-force login attempts, prevent unauthorized access to data, and log security events within 500ms (R8, RS8, RS7, RA5).\
-**Availability:** During failures, the system must perform automatic failover and maintain 99.5% monthly availability (RS11, RA6, R7). |
-| **Constraints** | **CON-1:** Support up to 5,000 concurrent users with acceptable response time (RS10, RA7).\
-**CON-2:** Available on mobile, web, and voice-assistant devices (RS9).\
-**CON-3:** Must integrate with university systems via standard APIs (RD1, RD2).\
-**CON-5:** Must adhere to institutional security/privacy regulations for personal data (R8, RA5). |
+| Design purpose | Design the UI and application/service layer for AIDAP so users can securely interact with the system via web, mobile, and voice, and receive personalized notifications. |
+| Primary functional requirements | UC1 (asking academic questions) and UC6 (interpreting natural language) because they define the core conversational flow. UC2 (receiving notifications) because it drives the notification pipeline. UC5 (student authentication) because secure access is required before exposing user-specific data. |
+| Quality attribute scenarios | Performance: responses within 2 seconds under normal load (CON1). Usability: students can intuitively manage notification and language preferences (RS6). Security: SSO and role-based access prevent unauthorized access and detect login abuse. |
+| Constraints | CON1 (up to 5,000 concurrent users with ~2s response), CON2 (support web, mobile, and voice), and CON5 (adhere to institutional security and privacy regulations). |
+| Concerns | CRN1 (identity and access), CRN2 (privacy and compliance), CRN3 (notifications), CRN4 (UI/UX), and CRN6 (content and announcement workflow). |
+
+---
+
+### Iteration goal:
+
+Design an architecture for the **presentation and application/service layers** that supports UC1, UC2, UC5, and UC6 using the existing web application reference architecture, while preparing the system for announcements and analytics in later iterations.
+
+---
+
+### Major components of the architecture:
+
+| Element | Rationale | Related Quality Attributes |
+| --- | --- | --- |
+| Web & Mobile UI Clients | Provide conversational UI and dashboards for students and lecturers, and allow users to manage preferences (language and notifications) on different devices. | Usability, Performance |
+| Voice Assistant Adapter | Adapts voice-assistant platforms to the same backend APIs so users can query AIDAP by voice without changing core logic. | Usability, Interoperability |
+| API Gateway / Conversation API | Single entry point for all clients; centralizes auth, rate limiting, logging, and routing to backend services to meet performance and security goals. | Performance, Security, Maintainability |
+| Conversation Service & AI Orchestrator | Handle conversational state and route queries to the AI model and data sources, enabling UC1 and UC6 without exposing data-layer details. | Performance, Modifiability |
+| Auth & RBAC Service | Integrates with institutional SSO and enforces roles (student/lecturer/admin/maintainer) at the service boundary to protect user data. | Security |
+| Notification & Preferences Services | Manage subscriptions, channels, and user preferences so notifications are timely, personalized, and configurable. | Usability, Performance, Security |
+
+---
+
+### Choice of reference architecture:
+
+| Design Decision | Rationale |
+| --- | --- |
+| Extend the existing Web Application reference architecture with an API Gateway and a set of backend application services | Keeps the browser-based model from Iteration 1 while adding a clear separation between clients, API Gateway, and application services. This supports multi-channel access (web, mobile, voice), allows centralized security and performance control, and keeps conversation, auth, and notification logic modular and replaceable. |
+
+---
+
+### Instantiate elements:
+
+| Design Decision | Rationale |
+| --- | --- |
+| Split the client into Web UI, Mobile UI, and a Voice Adapter | Makes it easier to support CON2 by providing separate front-ends for each channel while keeping them on the same backend APIs. |
+| Introduce an API Gateway / Conversation API between clients and services | Centralizes authentication, rate limiting, and routing to backend services, helping to meet security and performance requirements. |
+| Add an Auth & RBAC Service integrated with SSO | Ensures UC5 is supported by handling login, token validation, and role mapping in a single place instead of scattering security across services. |
+| Add dedicated Conversation, Notification, and Preferences Services | Encapsulates conversational logic, event delivery, and user preferences so they can evolve independently while supporting UC1, UC2, and UC6. |
+
+---
+
+### Model diagram:
+
+
+
+---
+
+### Analysis of design:
+
+| Not Addressed | Partially Addressed | Completely Addressed | Rationale |
+| --- | --- | --- | --- |
+|  | UC3, UC4 | UC1, UC2, UC5, UC6 | UC1/UC2/UC5/UC6 have end-to-end paths defined through the UI, API Gateway, and services. UC3 (announcements) and UC4 (analytics) have places in the architecture (Conversation, Notification, Analytics services) but detailed workflows and UIs will be refined later. |
+|  | Performance QA, Usability QA, Security QA |  | Tactics for performance (gateway, concurrency), usability (separate UIs and preferences), and security (Auth & RBAC, SSO, gateway validation) are in place, but low-level tuning and policy details are left for later iterations. |
+|  | CON1, CON5 | CON2 | Multi-channel access (web, mobile, voice) is fully supported by the separated clients and shared API. Performance and security constraints are architecturally considered but need implementation and configuration to be fully satisfied. |
+|  | CRN2, CRN4, CRN6 | CRN1, CRN3 | Identity and access (CRN1) and notifications (CRN3) have dedicated services and clear responsibilities. Privacy, UX consistency, and detailed announcement workflows are partly addressed but will be completed when UI screens, retention rules, and content flows are fully designed. |
