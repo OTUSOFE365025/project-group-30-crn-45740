@@ -9,7 +9,7 @@ Major components of the architecture:
 | Live monitoring dashboard | Allow system maintainers to monitor the general health of the system, notifying system maintainers when failures may occur. | QA7 |
 | Multi-factor authentication | To protect the system from potential brute force login attacks, the component must allow users to set up multi-factor authentication through their phone using a one-time password. | QA6 |
 | Lecturer UI service | This component allows lecturers, once authorized, to post course annoucements using text or voice commands. | QA2 |
-| Class analytics service | Summarizes class analytics received from the LMS, once the data's integrity has been verified. Works with the lecturer UI service to display a lecturer' class analytics. |
+| Class analytics service | Summarizes class analytics received from the LMS, once the data's integrity has been verified. Works with the lecturer UI service to display a lecturer' class analytics. | QA2 |
 ---
 
 Choice of reference architecture:
